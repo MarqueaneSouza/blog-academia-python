@@ -20,4 +20,8 @@ def post_detail(request, post_id):
     return render(request, 'blog/post_detail.html', context)
 
 def blog(request):
-    return render(request, 'blog/blog.html')
+    posts = Post.objects.order_by('-data_publicacao')[:5]
+    context = {
+        'posts': posts
+    }
+    return render(request, 'blog/blog.html', context)

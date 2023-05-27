@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9h^ml%nd8+u2#pp1n22p0$=ajys7ae^cc@le!dh)p_@3cilcdl'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,12 +128,11 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # google config
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = str(os.getenv('EMAIL_BACKEND'))
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'markcsouza2016@gmail.com'
-EMAIL_HOST_PASSWORD = 'ikfkevhxjaqtaqes'
-EMAIL_PORT = 587
+EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_PORT = str(os.getenv('EMAIL_PORT'))
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'default from email'
+DEFAULT_FROM_EMAIL = str(os.getenv('DEFAULT_FROM_EMAIL '))
 

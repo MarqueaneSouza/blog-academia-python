@@ -29,10 +29,15 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'cursos.apps.CursosConfig',
     'contato.apps.ContatoConfig',
+    'contas.apps.ContaConfig',
     'autenticacao.apps.AutenticacaoConfig',
     'ckeditor',
     'ckeditor_uploader',
     'exemplos.apps.ExemplosConfig',
+
+    # pip installed at the bottom
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [

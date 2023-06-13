@@ -10,7 +10,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+    <script src="https://unpkg.com/htmx.org@1.8.0"
+            integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc"
             crossorigin="anonymous"></script>
 
 
@@ -42,65 +43,45 @@
 
                             <!--region Primeiro Nome-->
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Primeiro Nome</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="firstName"
-                                       placeholder=""
-                                       value=""
-                                       required>
+                                <label for="{{ form.first_name.id_for_label }}"
+                                       class="form-label">{{ form.first_name.label }}</label>
+                                {{ form.first_name }}
                             </div>
                             <!--endregion-->
 
                             <!--region Último Nome-->
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Último Nome</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="lastName"
-                                       placeholder=""
-                                       value=""
-                                       required>
+                                <label for="{{ form.last_name.id_for_label }}"
+                                       class="form-label">{{ form.last_name.label }}</label>
+                                {{ form.last_name }}
                             </div>
                             <!--endregion-->
 
                             <!--region Username-->
                             <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
                                 <div class="input-group">
                                     <span class="input-group-text">@</span>
-                                    <input type="text"
-                                           class="form-control"
-                                           id="username"
-                                           placeholder="Username"
-                                           value=""
-                                           required>
+                                    {% render_field form.username hx-post="contas/htmx_valida_username" hx-target="#usr-val" hx-trigger="keyup" %}
                                 </div>
+
+                                <div id="usr-val"> </div>
+
                             </div>
                             <!--endregion-->
 
                             <!--region Email-->
                             <div class="col-12">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email"
-                                       class="form-control"
-                                       id="email"
-                                       placeholder="you@example.com"
-                                       value=""
-                                       required>
 
                             </div>
                             <!--endregion-->
 
                             <!--region Password-->
                             <div class="col-sm-6">
-                                <label for="pwd" class="form-label">Senha</label>
-                                <input type="email"
-                                       class="form-control"
-                                       id="pwd"
-                                       placeholder="Digite aqui seu e-mail"
-                                       value=""
-                                       required>
+                                <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+
+                                {{ form.password }}
 
                                 <div class="invalid-feedback">
                                     Digite aqui sua senha.
@@ -112,9 +93,14 @@
                                 <input type="email"
                                        class="form-control"
                                        id="pwd_confirm"
-                                       placeholder="Confirme aqui sua senha"
+                                       name="pwd_confirm"
                                        value=""
+                                       hx-post="contas/htmx_valida_senha"
+                                       hx-trigger="keyup"
+                                       hx-target="#error_pwd"
                                        required>
+
+                                <div id="error_pwd"></div>
 
                             </div>
                             <!--endregion-->
